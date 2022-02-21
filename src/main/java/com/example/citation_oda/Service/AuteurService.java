@@ -13,6 +13,9 @@ public class AuteurService {
     public Optional<Auteur> findOne(Integer id_auteur){
         return  auteurRepository.findById(id_auteur);
     }
+    public Optional<Auteur> findOne(int id) {
+        return auteurRepository.findById(id);
+    }
 
     public void save (Auteur auteur){auteurRepository.save(auteur);}
     public void update(Auteur auteur){

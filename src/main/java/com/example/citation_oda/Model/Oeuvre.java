@@ -7,11 +7,11 @@ import java.util.Set;
 @Entity
 @Table(name = "oeuvre")
 public class Oeuvre {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_oeuvre")
     private int idOeuvre;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "nom_oeuvre",unique = true)
     private String nomOeuvre;
 
