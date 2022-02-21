@@ -1,6 +1,5 @@
 package com.example.citation_oda.Controller;
 
-import com.example.citation_oda.Controller.*;
 import com.example.citation_oda.Model.*;
 import com.example.citation_oda.Repository.*;
 import com.example.citation_oda.Service.*;
@@ -18,7 +17,8 @@ public class MainController {
 
     @Autowired
     private AuteurRepository auteurRepository;
-    private AuteurService auteurService;
+
+    AuteurService auteurService;
     AuteurService suppauteurservice;
      AuteurService suppauteur;
 @Autowired
@@ -38,35 +38,39 @@ public class MainController {
     private ThemeService supptheme;
 //Différentes routes pour les listes
     @GetMapping("/listeauteur")
-    public String showListeAuteur(ModelMap modelMap){
-        List<Auteur> listeauteur =  auteurService.findAll();
+    @ResponseBody
+    public List<Auteur> showListeAuteur(ModelMap modelMap){
+        List<Auteur> listeauteur =  auteurRepository.findAll();
         modelMap.addAttribute("auteur","un_test");
         modelMap.addAttribute("auteur",listeauteur);
-        return "listeauteur";
+        return listeauteur;
     }
 
     @GetMapping("/listecitation")
-    public String showListeCitation(ModelMap modelMap){
-        List<Citation> listecitation =  citationService.findAll();
+    @ResponseBody
+    public List<Citation> showListeCitation(ModelMap modelMap){
+        List<Citation> listecitation =  citationRepository.findAll();
         modelMap.addAttribute("citation","une_citation");
         modelMap.addAttribute("citation",listecitation);
-        return "listecitation";
+        return listecitation;
     }
 
     @GetMapping("/listeoeuvre")
-    public String showListeOeuvre(ModelMap modelMap){
-        List<Oeuvre> listeoeuvre =  oeuvreService.findAll();
+    @ResponseBody
+    public List<Oeuvre> showListeOeuvre(ModelMap modelMap){
+        List<Oeuvre> listeoeuvre =  oeuvreRepository.findAll();
         modelMap.addAttribute("oeuvre","une_oeuvre");
         modelMap.addAttribute("oeuvre",listeoeuvre);
-        return "listeoeuvre";
+        return listeoeuvre;
     }
 
     @GetMapping("/listetheme")
-    public String showListeTheme(ModelMap modelMap){
-        List<Theme> listetheme =  themeService.findAll();
+    @ResponseBody
+    public List<Theme> showListeTheme(ModelMap modelMap){
+        List<Theme> listetheme =  themeRepository.findAll();
         modelMap.addAttribute("theme","un_theme");
         modelMap.addAttribute("theme",listetheme);
-        return "listetheme";
+        return listetheme;
     }
 
 //Différentes routes pour les suppressions
@@ -83,8 +87,8 @@ public class MainController {
     }
 
     @GetMapping("/suppoeuvre")
-    public String suppoeuvre(ModelMap modelMap, @RequestParam String id){
-        suppoeuvreservice.delete(suppoeuvre.findOne(id).get().getNomOeuvre());
+    public String suppoeuvre(ModelMap modelMap, @RequestParam Integer id){
+        suppoeuvreservice.delete(suppoeuvre.findOne(id).get().getIdOeuvre());
         return "listeoeuvre";
     }
 
