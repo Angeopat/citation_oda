@@ -15,10 +15,7 @@ public class CitationService {
     public void save (Citation citation){
         citationRepository.save(citation);
     }
-    public void update(Citation citation){
-        citation = citationRepository.save(citation);
-    }
-    public void delete(Integer id_citation){citationRepository.deleteById(id_citation);}
+
     public List<Citation> findAll(){
         return  citationRepository.findAll();
 }

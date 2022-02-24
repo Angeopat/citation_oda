@@ -1,6 +1,8 @@
 package com.example.citation_oda.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,8 +19,18 @@ public class Auteur {
     @Column(name = "prenoms")
     private String prenoms;
 
-    @OneToMany(mappedBy="auteur")
-    private Set<Oeuvre> oeuvre;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "oeuvre_as_many_auteur",
+            joinColumns = @JoinColumn(name = "auteur_id_auteur"))
+    private List<Oeuvre> oeuvres = new ArrayList<>();
+
+    public List<Oeuvre> getOeuvres() {
+        return oeuvres;
+    }
+
+    public void setOeuvres(List<Oeuvre> oeuvres) {
+        this.oeuvres = oeuvres;
+    }
 
     public Auteur() {
     }
@@ -47,11 +59,4 @@ public class Auteur {
         this.prenoms = prenoms;
     }
 
-    public Set<Oeuvre> getOeuvre() {
-        return oeuvre;
-    }
-
-    public void setOeuvre(Set<Oeuvre> oeuvre) {
-        this.oeuvre = oeuvre;
-    }
 }

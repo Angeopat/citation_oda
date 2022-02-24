@@ -2,6 +2,7 @@ package com.example.citation_oda.Model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,20 +22,19 @@ public class Oeuvre {
     @Column(name = "maison_edition")
     private String maisonEdition;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "auteur_id_auteur", unique = true)
-    private Auteur auteur;
 
-    @OneToMany(mappedBy="oeuvre")
-    private Set<Citation> citations;
 
-    public Auteur getAuteur() {
-        return auteur;
+    @ManyToMany(mappedBy = "oeuvres", cascade = { CascadeType.ALL })
+    List<Auteur> unauteur ;
+
+    public List<Auteur> getUnauteur() {
+        return unauteur;
     }
 
-    public void setAuteur(Auteur auteur) {
-        this.auteur = auteur;
+    public void setUnauteur(List<Auteur> unauteur) {
+        this.unauteur = unauteur;
     }
+
 
     public int getIdOeuvre() {
         return idOeuvre;
@@ -67,4 +67,6 @@ public class Oeuvre {
     public void setMaisonEdition(String maisonEdition) {
         this.maisonEdition = maisonEdition;
     }
+
+
 }

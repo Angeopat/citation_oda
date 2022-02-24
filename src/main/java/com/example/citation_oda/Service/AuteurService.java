@@ -15,12 +15,6 @@ public class AuteurService {
     }
 
     public void save (Auteur auteur){auteurRepository.save(auteur);}
-    public void update(Auteur auteur){
-        auteur = auteurRepository.save(auteur);
-    }
-    public void delete(Integer id_auteur){
-        auteurRepository.deleteById(id_auteur);
-    }
     public List<Auteur> findAll(){
         return  auteurRepository.findAll();
 }}

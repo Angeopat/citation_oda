@@ -12,6 +12,4 @@ public class OeuvreService {
     OeuvreRepository oeuvreRepository;
     public Optional<Oeuvre> findOne(Integer id_oeuvre){return  oeuvreRepository.findById(id_oeuvre);}
     public void save (Oeuvre oeuvre){oeuvreRepository.save(oeuvre);}
-    public void update(Oeuvre oeuvre){oeuvre = oeuvreRepository.save(oeuvre);}
-    public void delete(Integer id_oeuvre){oeuvreRepository.deleteById(id_oeuvre);}
     public List<Oeuvre> findAll(){return  oeuvreRepository.findAll();}}

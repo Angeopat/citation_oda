@@ -12,12 +12,6 @@ public class ThemeService {
     ThemeRepository themeRepository;
     public Optional<Theme> findOne(Integer id_theme){return  themeRepository.findById(id_theme);}
     public void save (Theme theme){themeRepository.save(theme);}
-    public void update(Theme theme){
-        theme = themeRepository.save(theme);
-    }
-    public void delete(Integer id_theme){
-        themeRepository.deleteById(id_theme);
-    }
     public List<Theme> findAll(){
         return  themeRepository.findAll();
 }}

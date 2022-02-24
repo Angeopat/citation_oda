@@ -18,24 +18,14 @@ public class MainController {
     @Autowired
     private AuteurRepository auteurRepository;
 
-    AuteurService auteurService;
-    AuteurService suppauteurservice;
-     AuteurService suppauteur;
-@Autowired
-    private CitationRepository citationRepository;
-    private CitationService citationService;
-    private CitationService suppcitationservice;
-    private CitationService suppcitation;
-@Autowired
-    private OeuvreRepository oeuvreRepository;
-    private OeuvreService oeuvreService;
-    private OeuvreService suppoeuvreservice;
-    private OeuvreService suppoeuvre;
-@Autowired
-    private ThemeRepository themeRepository;
-    private ThemeService themeService;
-    private ThemeService suppthemeservice;
-    private ThemeService supptheme;
+    @Autowired
+        private CitationRepository citationRepository;
+
+    @Autowired
+        private OeuvreRepository oeuvreRepository;
+    @Autowired
+        private ThemeRepository themeRepository;
+
 //Différentes routes pour les listes
     @GetMapping("/listeauteur")
     @ResponseBody
@@ -73,30 +63,6 @@ public class MainController {
         return listetheme;
     }
 
-//Différentes routes pour les suppressions
-    @GetMapping("/suppauteur")
-    public String suppauteur(ModelMap modelMap, @RequestParam Integer id){
-        suppauteurservice.delete(suppauteur.findOne(id).get().getIdAuteur());
-        return "listeauteur";
-    }
-    @ResponseBody
-    @GetMapping("/suppcitation")
-    public String suppcitation(ModelMap modelMap, @RequestParam Integer id){
-        suppcitationservice.delete(suppcitation.findOne(id).get().getIdCitation());
-        return "listeauteur";
-    }
-
-    @GetMapping("/suppoeuvre")
-    public String suppoeuvre(ModelMap modelMap, @RequestParam Integer id){
-        suppoeuvreservice.delete(suppoeuvre.findOne(id).get().getIdOeuvre());
-        return "listeoeuvre";
-    }
-
-    @GetMapping("/supptheme")
-    public String supptheme(ModelMap modelMap, @RequestParam Integer id){
-        suppthemeservice.delete(supptheme.findOne(id).get().getIdTheme());
-        return "listetheme";
-    }
 
     //Différentes routes pour les ajouts
     @PostMapping(value = "/addAuteur")
@@ -104,7 +70,7 @@ public class MainController {
     public String addAuteur(@ModelAttribute("auteur") Auteur auteur, BindingResult bindingResult, Model model) {
         model.addAttribute("auteur", auteur);
         auteurRepository.save(auteur);
-        return ("L'auteur a été ajouté avec succès");
+        return ("L\'auteur a été ajouté avec succès");
 
     }
 
